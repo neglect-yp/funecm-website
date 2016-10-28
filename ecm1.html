@@ -2,6 +2,7 @@
 <html lang="japanese">
 
 <head>
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
@@ -12,7 +13,6 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
   <link href="css/original.css" rel="stylesheet">
   <style type="text/css">
   body { padding-top: 80px; }
@@ -57,6 +57,11 @@
     }
   }
   </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="css/jsxgraph.css" />
+  <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="js/GeonextReader.js"></script>
+  <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -67,10 +72,8 @@
 </head>
 
 <body>
-
   <div id="wrapper" class="padd">
 
-    <!-- Sidebar -->
     <header>
       <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -107,33 +110,44 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="content">
-                <h1 class="bg-primary">活動記録</h1>
-                <h3><mark>4月</mark></h3>
-                <p class="marg"> 本プロジェクトが始動した。プロジェクトで使用するソフトのインストール、説明が行われた。また、担当教員に楕円曲線について講説していただいた。</p>
-                <h3><mark>5月</mark></h3>
-                <p class="marg">理論班、プログラム班の2つ班に分かれて並列で活動を行うことを決めた。理論班は楕円曲線に関する文献を探して計算コスト減少の為のアルゴリズム(手法)を探すこと、プログラム班はより高速なプログラムを作成することとなった。理論班は、素因数を見つける効率が1.5倍向上することが見込める"Atkin-Moraine ECPPアルゴリズム"の理解に励んだ。プログラム班は、実際に作成したプログラムで20桁の合成数の素因数分解、10桁の合成数の素因数分解、196桁の合成数の分解を行い、計算時間を記録した。</p>
-                <h3><mark>6月</mark></h3>
-                <p class="marg">理論班は引き続き、Atkin-Moraine ECPPアルゴリズムの文献を探し、理解することに成功した。プログラム班は、"Extended twisted Edwards coordinates"というアルゴリズムの実装と、楕円曲線の生成法の変更を行った。また、7月に行われる中間発表のための準備を行った。</p>
-                <h3><mark>7月</mark></h3>
-                <p class="marg">中間発表を行った。反省会を行い、そこで出た反省を後期の活動に生かすこととなった。</p>
-              </div>
+                <h1 class="bg-primary">活動目的</h1>
+                <h3><mark>FUN-ECMは何故素因数分解をするのか？</mark></h3>
+                <p class="marg">
+                  現在、インターネットにおける通信には、公開鍵暗号と呼ばれる暗号技術が広く使われており、それらの暗号技術の安全性の根拠には素因数分解の難しさが関係しています。<br><br>
+                  例えば、15という数字は、3×5に素因数分解することができます。公開鍵暗号において、15という数字が暗号化するための鍵(公開鍵といいます)にあたり、3と5という2つの数字が復号するための鍵(秘密鍵といいます)にあたります。<br>
+                  このような2桁の合成数ならば計算機を使わずとも頭で簡単に答えが出せますが、158041という数字を因数分解してみましょう。と言われたとき、頭での計算は難しいと思われます。<br><br>
+                </p>
+                <p class="gazo">
+                  <img src="image/gazo1.PNG"><br>
+                </p>
+                <p>
+                  このように素因数分解は、桁数が大きくなればなるほど難しくなります。これは、人の頭だけに限らず、コンピューターも同じです。<br><br>
+                  実際にはもっと大きな桁数の数が使われていますが、このようにして素因数分解と公開鍵暗号は関連しています。そして、私たちはその暗号技術の改良の貢献のために楕円曲線法を使用し素因数分解をしているのです。<br><br>
+                </p>
+              </h4>
+              <h3><mark>ECM-NETとは？</mark></h3>
+              <p class="marg">
+                <a href="https://members.loria.fr/PZimmermann/records/ecmnet.html">ECM-NET</a>とは、楕円曲線法を用いて大きな桁数の素因数を見つけることを目的としたコンペティション(競争しあうサイト)のことです。ECN-NETには、現在登録されている素因数よりも大きな桁数の素因数を発見することで全世界誰でもランクインし、名前を載せることができます。<br><br>
+                私たちは、どのくらい大きな桁数の素因数を見つけたかの指標として、このECM-NETというサイトを利用し、FUN-ECMという名前を載せることを活動目標にしています。
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <!-- /#page-content-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-content-wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+  </div>
+  <!-- /#wrapper -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
 
-    <!-- Menu Toggle Script -->
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
 
-  </body>
+  <!-- Menu Toggle Script -->
 
-  </html>
+</body>
+
+</html>
