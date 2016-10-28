@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="japanese">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>FUN-ECM</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/original.css" rel="stylesheet">
+  <link href="css/shCoreDefault.css" rel="stylesheet">
+
+  <style type="text/css">
+  body { padding-top: 80px; }
+  @media ( min-width: 768px ) {
+    #banner {
+      min-height: 300px;
+      border-bottom: none;
+    }
+    .bs-docs-section {
+      margin-top: 8em;
+    }
+    .bs-component {
+      position: relative;
+    }
+    .bs-component .modal {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      bottom: auto;
+      z-index: 1;
+      display: block;
+    }
+    .bs-component .modal-dialog {
+      width: 90%;
+    }
+    .bs-component .popover {
+      position: relative;
+      display: inline-block;
+      width: 220px;
+      margin: 20px;
+    }
+    .nav-tabs {
+      margin-bottom: 15px;
+    }
+    .progress {
+      margin-bottom: 10px;
+    }
+    .padd{
+      padding-left: 16.8%;
+      padding-right: 16.8%;
+    }
+  }
+  </style>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+  <div id="wrapper" class="padd">
+
+    <!-- Sidebar -->
+    <header>
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">FUN-ECM</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Top</a></li>
+              <li><a href="ecm.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="ecm.html">ECMとは何？</a></li>
+                  <li><a href="ecm.html">活動目的</a></li>
+                </ul>
+                <li><a href="log.html">Log</a></li>
+                <li><a href="member.html">Member</a></li>
+                <li><a href="link.html">Link</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </header>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="soto container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="bg-primary">プログラムについて</h1>
+              <p>
+                このページでは、主に来年度このプロジェクトに参加する後輩及び、私達が実装したプログラムに興味がある方への解説を行います。
+              </p>
+              <p>
+                すべてのソースコードが見たい方はこちらをご覧下さい。<br>
+                <a href="https://github.com/neglect-yp/funecm">https://github.com/neglect-yp/funecm</a>
+              </p>
+
+              <div class="panel panel-primary">
+                <div class="panel-heading">目次</div>
+                <div class="panel-body">
+                  <ul>
+                    <li><a href="#HOWTO">funecmプログラムの使い方</a></li>
+                    <li><a href="#ECM">ECMの基本的な実装</a></li>
+                    <li><a href="#ETEC">extended twisted Edwards coordinates</a></li>
+                    <li><a href="#SWM">移動窓法（sliding-window method）</a></li>
+                    <li><a href="#ECPP">Atkin-Moraine ECPP</a></li>
+                    <li><a href="#STAGE2">Stage2</a></li>
+                  </ul>
+                </div>
+              </div>
+              <h3 id="HOWTO"><mark>funecmプログラムの使い方</mark></h3>
+              <pre class="brush:bash">
+$ ./funecm [options] N B1 B2 OUTPUT.txt
+              </pre>
+              <h3 id="ECM"><mark>ECMの基本的な実装</mark></h3>
+              <pre class="brush:c; first-line:150" title="main.c">
+#pragma omp parallel num_threads(n) shared(found,s,t)
+{
+  #pragma omp for
+  for (i = 0; i &lt; number_of_elliptic_curves; i++) {
+    mpz_t X, Y, d;
+    mpz_inits(X, Y, d, NULL);
+
+    if (atkin_flag) {
+      /* atkin-moraine ECPP を用いて X, Y を決定する */
+      atkin_moraine(X, Y, d, s, t, N);
+      gmp_printf("X=%Zd, ",X);
+    } else {
+      /* Yを乱数で生成する */
+      gmp_randstate_t state;
+      gmp_randinit_default(state);
+      gmp_randseed_ui(state, (unsigned long int)time(NULL)+i);
+      mpz_urandomm(Y, state, N);
+      while (mpz_cmp_ui(Y, 2) &lt; 0)
+      mpz_add_ui(Y, Y, 1);
+    }
+...
+      /* 各パラメータをecm()関数に渡す */
+      ecm(factor, N, X, Y, d, B1, B2, fp, window_size);
+              </pre>
+              <p>
+              まず、150-152行目はfor文の並列化のために記述されています。これにより、使用可能なプロセッサ１つにつき１つずつ、楕円曲線を割り当てて計算しています。
+              </p>
+              <p>
+              それ移行のコードは、初期の点\(P\)を決定するためのものです。Atkin-Moraine ECPPを使用するモードでは、そのアルゴリズムに従って初期の点\(P\)を決定しますが、使用しないモードでは\(Y\)をランダムに決定します。\(Y\)をランダムに決定した場合では\(X\)を2に固定します。
+              </p>
+              <pre class="brush:c; first-line:79" title="ecm.c">
+/* stage1 */
+while (p &lt;= B1) {
+  /* e = log p B1を決める */
+  e = (int)(log(B1) / log(p));
+  for (i = 1; i &lt;= e; i++) {
+    /* Zを1にするための処理 */
+    mpz_invert(inv, P-&gt;Z, N);
+    mpz_mul(P-&gt;X, P-&gt;X, inv);
+    mpz_mod(P-&gt;X, P-&gt;X, N);
+    mpz_mul(P-&gt;Y, P-&gt;Y, inv);
+    mpz_mod(P-&gt;Y, P-&gt;Y, N);
+    mpz_set_ui(P-&gt;Z, 1);
+
+    scalar(P, P, p, d, window_size, N);
+    mpz_gcd(f, P-&gt;X, N);
+    if (mpz_cmp_ui(f,1) != 0) {
+      goto STAGE1_FACTOR_FOUND;
+    }
+  }
+
+  /* pを次の素数に */
+  mpz_nextprime(prime, prime);
+  p = mpz_get_ui(prime);
+}
+              </pre>
+              <p>
+              \(B_1\)というパラメータを適切に決めておき（<a href="https://members.loria.fr/PZimmermann/records/ecm/params.html">ECMNET: Optimal parameters for ECM</a>を参照して下さい）、\(B_1\)以下のすべての素数\(p\)について\(p^{\lfloor\log_{p}B1\rfloor}P\)を求め、\(P\)に代入します。\(pP\)を計算するごとに、\(pP\)の\(X\)座標と合成数\(N\)のGCD（最大公約数）を求めます。GCDが1でない場合、GCDは\(N\)の因数の1つであることがわかります。
+              </p>
+              <h3 id="ETEC"><mark>extended twisted Edwards coordinates</mark></h3>
+              <h3 id="SWM"><mark>移動窓法（sliding-window method）</mark></h3>
+              <h3 id="ECPP"><mark>Atkin-Moraine ECPP</mark></h3>
+              <h3 id="STAGE2"><mark>Stage2</mark></h3>
+              </fieldset>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/shCore.js"></script>
+  <script src="js/shBrushCpp.js"></script>
+  <script src="js/shBrushBash.js"></script>
+  <script type="text/javascript">
+SyntaxHighlighter.all();
+  </script>
+  <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <!-- Menu Toggle Script -->
+</body>
+
+</html>
