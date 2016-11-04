@@ -29,7 +29,6 @@ p.gazo img{
 .graf-title{
   text-align: center;
 }
-
 .name:after{
   content: "";
   display:block;
