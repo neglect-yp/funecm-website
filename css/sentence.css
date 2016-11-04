@@ -1,0 +1,19 @@
+.long-Sentence {
+    border: 2px solid #da4033;
+    border-radius: 4px;
+    margin: auto;
+    padding: 2em;
+    position: relative;
+    width:90%;
+}
+
+.long-Sentence h4{
+  font-weight: 600;
+}
+.long-Sentence ul{
+  padding:0;
+}
+
+.long-Sentence li{
+  list-style-type: none;
+}
