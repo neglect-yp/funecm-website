@@ -1,4 +1,14 @@
-
+h3:not(.link-h3):not(.tab-h3){
+  padding: .25em 0 .25em .75em;
+	border-left: 6px solid #48d1cc;
+}
+.logo img{
+  width:50%;
+  margin-top: 20px;
+}
+.margin-top{
+  margin-top:20px;
+}
 .head-box{
   position: absolute;
   z-index: 20000;
@@ -8,8 +18,8 @@
   font-size: 40px;
 }
 .marg{
-  margin-bottom:20px;
-  margin-top:20px;
+  margin-bottom:10px;
+  margin-top:10px;
 }
 
 .top{
@@ -165,7 +175,7 @@ p.gazo img{
   height:70%;
   margin:auto;
   display:block;
-  border: 1px solid #0000FF	;
+  border: 1px solid #003399;
   border-radius: 4px;
   padding: 2em;
 }
