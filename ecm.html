@@ -16,7 +16,7 @@
   <link href="css/original.css" rel="stylesheet">
   <style type="text/css">
   body { padding-top: 80px; }
-  @media ( min-width: 768px ) {
+  @media ( min-width: 920px ) {
     #banner {
       min-height: 300px;
       border-bottom: none;
@@ -96,9 +96,9 @@
                 </ul>
                 <li><a href="log.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">History <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                <li><a href="log.html">前期活動</a></li>
-                <li><a href="log2.html">後期活動</a></li>
-              </ul>
+                    <li><a href="log.html">前期活動</a></li>
+                    <li><a href="log2.html">後期活動</a></li>
+                  </ul>
                 <li><a href="member.html">Member</a></li>
                 <li><a href="link.html">Link</a></li>
               </ul>
@@ -118,12 +118,12 @@
                 <h1 class="bg-primary">ECMとは</h1>
                 <h3><mark>ECMとは何？</mark></h3>
                 <p class="marg">
-                  ECMとは、Elliptic Curve Method(楕円曲線法)のことで、楕円曲線法とは、楕円曲線を用いて素因数分解するアルゴリズム(手法)のことです。<br></p>
+                  ECMとは、<font color="red"><b>Elliptic Curve Method</b></font>の略です。日本語では<font color="red"><b>楕円曲線法</b></font>といいます。</p>楕円曲線法とは、楕円曲線を用いて素因数分解するアルゴリズム(手法)のことです。</p><br>
                   <p class="graf-title">
                     楕円曲線 \(y=x^3+ax+b\) のグラフ<br>
                   </p>
 
-                  <div id='jxgbox' class='jxgbox' style='width:90%; height:400px;'></div>
+                  <div id='jxgbox' class='jxgbox' style='width:80%; height:400px;'></div>
                   <script type='text/javascript'>
                   JXG.Options.axis.strokeColor = '#cccccc';
                   brd = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-15, 10, 15, -10], axis:true});
@@ -139,23 +139,54 @@
                   </script><br><br>
 
                   <p>私たちは、このECMを用いて素因数分解を行う活動しています。<br><br></p>
-                  <h3><mark>二倍算について<mark></h3>
+                  <h3><mark>\(mod\) \(n\) の計算について<mark></h3>
                     <div class="marg">
-                      <p>ECMでは、点同士の二倍算を用いて素因数分解をします。
-                        点同士の二倍算の工程は、</p>
-                        <ol>
-                          <li>初めに楕円曲線上に適当な点Pを置く。</li>
-                          <li>点Pの接線を引く。</li>
-                          <li>接線を引くと新たに楕円曲線との交点ができ、これをP*Pとする。</li>
-                          <li>点P*Pのx軸に対称な点を取り、これを2P(P+P)とする。</li>
-                          <li>生成された点2Pと初めに置いた点Pを直線で結ぶ。</li>
-                          <li>直線を引くと新たに楕円曲線との交点ができ、これを2P*Pとする。</li>
-                          <li>点2P*Pのx軸に対称な点を取り、これを3P(2P*P)とする。</li>
-                        </ol>
-                        <p>更に工程5~7を繰り返すことによって4P、5P、6P…と点を生成することができます。この工程は無限に繰り返すことができ、このnPを利用し、素因数分解を行います。</p><br>
-                        <img src="image/nibai.gif" width="500" height="300"><br>
+                      <p>それではECMではどのようにして楕円曲線を用いて素因数分解を行うのでしょうか。</p>
+                      <p>ECMでは<font color="red"><b>【\(mod\) \(n\)での計算】</b></font>と<font color="red"><b>【点同士の二倍算】</b></font>についての2点が重要になります。</p><br>
+                      <p>まず\(mod\) \(n\)とは簡単に「\(n\)で割った余り」とイメージしてください。</p>
+                      <div class="well">
+                        \(a\)と\(b\)の\(n\)で割ったときの余りが等しいとき、\(a≡b\) \((mod\) \(n)\)と表す。
+                      </div>
+                      <p>例えば \(12+7≡4\) \((mod\) \(15)\)は「\(12+7(=19)\)を\(15\)で割った余りは\(4\)となる」と考えます。<font color="red"><b>ECMでは素因数分解をする自然数を\(n\)と設定し、計算をすべて\(mod\) \(n\)上で行います。</b></font></p>
+                      <p>座標についても同様です。例えば\((19,31)\)はそれぞれの座標を\(15\)で割るとそれぞれ\(4\)と\(1\)となるので\((19,31)≡(4,1)\) \((mod\) \(15)\)となります。</p>
+                    </div><br>
+
+                    <h3><mark>二倍算について<mark></h3>
+                      <div class="marg">
+                        <p>続いて<font color="red"><b>点同士の二倍算</b></font>についてです。点同士の二倍算では以下の2つの表現が重要になります。</p>
+                        <div class="well">
+                          <ul>
+                            <li>楕円曲線上のある点\(P\),点\(Q\)の通る直線の\(P\),\(Q\)以外の交点を\(P×Q\)と表す。</li>
+                            <li>点\(P×Q\)の\(x\)軸対称な点を\(P+Q\)と表す。</li>
+                          </ul>
+                        </div>
+                        <p>ECMでは楕円曲線上にある<font color="red"><b>任意の1点</b></font>を取って上の操作を行います。ある点\(P\)を通る接線の\(P\)以外の交点は「点\(P\)と点\(P\)以外の交点」と置き換えて考えて\(P×P\)と表し、その点を\(x\)軸対称にした点を\(P+P(=2P)\)とします。(\(2P\)ができるので<font color="red"><b>二倍算</b></font>といいます。)</p>
+                        <p>一連の流れは以下のようになります。</p>
+                        <div class="well">
+                          <ol>
+                            <li>初めに楕円曲線上に適当な点\(P\)を置く。</li>
+                            <li>点\(P\)の接線を引く。</li>
+                            <li>接線を引くと新たに楕円曲線との交点\(P×P\)ができる。</li>
+                            <li>点\(P×P\) の\(x\)軸に対称な点となる\(2P\)をとる。(\(2P=P+P\))</li>
+                            <li>生成された点\(2P\)と初めに置いた点\(P\)を直線で結ぶ。</li>
+                            <li>直線を引くと新たに楕円曲線との交点\(2P×P\)ができる。</li>
+                            <li>点\(2P×P\)のx軸に対称な点となる\(2P+P(=3P)\)とする。</li>
+                          </ol>
+                        </div>
+                        <p>更に工程5~7を繰り返すことによって\(4P\)、\(5P\)、\(6P\)…と点を生成することができます。この工程を繰り返し行い、<font color="red"><b>ある条件(無限遠点に飛ぶこと)以外でこれ以上できない状態になったとき素因数分解が完了します。</b></font></p><br>
+                        <p class="gif"><img src="image/nibai.gif" width="500" height="300"></p><br>
+                      </div>
+                      <h3><mark>よりよいECMを構築するには</mark></h3>
+                      <div class="marg">
+                        <p>FUN-ECMではただ素因数分解をすることが目的ではありません。FUN-ECMの目指す先はより早く、より大きい素因数を見つけられるプログラムを作ることです。そのためには二倍算の計算をより効率的にできるように改善しなければなりません。</p>
+                        <p>次ページでは、なぜこのような改善をFUN-ECMは行うかについての説明をします。</p>
                       </div>
                     </div>
+                    <nav>
+                      <ul class="pager">
+                        <li><a href="ecm1.html">次へ☞</a></li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>
