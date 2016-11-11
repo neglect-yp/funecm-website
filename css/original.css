@@ -37,9 +37,6 @@ h3:not(.link-h3):not(.tab-h3){
 p.gazo img{
   width:100%
 }
-.graf-title{
-  text-align: center;
-}
 #button-t{
   padding-top: 50px;
 }
@@ -170,14 +167,20 @@ p.gazo img{
 .clear{
   clear:left;
 }
-.gif img{
-  width:70%;
-  height:70%;
+.gif{
+  width:93%;
+  height:93%;
   margin:auto;
   display:block;
   border: 1px solid #003399;
   border-radius: 4px;
-  padding: 2em;
+  padding: 1em;
+}
+.gif img{
+  width:88%;
+  height:88%;
+  margin:auto;
+  margin-top: 3px;
 }
 .tab{
   float:left;

@@ -115,13 +115,18 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="content">
+                  <ol class="breadcrumb">
+                    <li><a href="index.html">Top</a></li>
+                    <li class="#">About</li>
+                    <li class="#">ECMとは</li>
+                  </ol>
                   <h1 class="bg-primary">ECMとは</h1>
                   <p class="margin-top">このページでは"ECM"とはどのようなものなのかについて基礎的な解説をしています。プログラムというよりかは理論寄りな部分になります。</p>
                   <h3><b>ECMとは何？</b></h3>
                   <p class="marg">
                     ECMとは、<font color="red"><b>Elliptic Curve Method</b></font>の略です。日本語では<font color="red"><b>楕円曲線法</b></font>といいます。</p>楕円曲線法とは、楕円曲線を用いて素因数分解するアルゴリズム(手法)のことです。</p><br>
-                    <p class="graf-title">
-                      楕円曲線 \(y=x^3+ax+b\) のグラフ<br>
+                    <p>
+                      <center>楕円曲線 \(y=x^3+ax+b\) のグラフ</center>
                     </p>
 
                     <div id='jxgbox' class='jxgbox' style='width:80%; height:400px;'></div>
@@ -139,11 +144,10 @@
                     brd.unsuspendUpdate();
                     </script><br><br>
 
-                    <p>私たちは、このECMを用いて素因数分解を行う活動しています。<br><br></p>
+                    <p>私たちは、このECMを用いて素因数分解を行う活動しています。<br></p>
+                    <p>それではECMではどのようにして楕円曲線を用いて素因数分解を行うのでしょうか。ECMでは<font color="red"><b>【\(mod\) \(n\)での計算】</b></font>と<font color="red"><b>【点同士の二倍算】</b></font>についての2点が重要になります。</p>
                     <h3><b>\(mod\) \(n\) の計算について</b></h3>
                     <div class="marg">
-                      <p>それではECMではどのようにして楕円曲線を用いて素因数分解を行うのでしょうか。</p>
-                      <p>ECMでは<font color="red"><b>【\(mod\) \(n\)での計算】</b></font>と<font color="red"><b>【点同士の二倍算】</b></font>についての2点が重要になります。</p><br>
                       <p>まず\(mod\) \(n\)とは簡単に「\(n\)で割った余り」とイメージしてください。</p>
                       <div class="well">
                         \(a\)と\(b\)の\(n\)で割ったときの余りが等しいとき、\(a≡b\) \((mod\) \(n)\)と表す。
@@ -151,8 +155,7 @@
                       <p>例えば \(12+7≡4\) \((mod\) \(15)\)は「\(12+7(=19)\)を\(15\)で割った余りは\(4\)となる」と考えます。<font color="red"><b>ECMでは素因数分解をする自然数を\(n\)と設定し、計算をすべて\(mod\) \(n\)上で行います。</b></font></p>
                       <p>座標についても同様です。例えば\((19,31)\)はそれぞれの座標を\(15\)で割るとそれぞれ\(4\)と\(1\)となるので \(mod\) \(15\)上の世界では\((19,31)≡(4,1)\)となるので\((19,31)\)は\((4,1)\)として扱います。</p>
                       <p>ECMでは\(mod\)を取るようにしてプログラムを組むことが必須なのです。</p>
-                    </div><br>
-
+                    </div>
                     <h3><b>二倍算について</b></h3>
                     <div class="marg">
                       <p>続いて<font color="red"><b>点同士の二倍算</b></font>についてです。これはECMの基本的な処理の流れに大きく関係しています。</p>
@@ -163,8 +166,12 @@
                           <li>\((2)\) 点\(P×Q\)の\(x\)軸対称な点を\(P+Q\)と表す。(これを点\(P\)と点\(Q\)の加算といいます)</li>
                         </ul>
                       </div>
-                      <p><center>楕円曲線における点\(P\)と点\(Q\)の加算</center></p>
-                      <p class="gif"><img src="image/kasan.gif" width="500" height="300"></p><br>
+                      <div class="gif">
+                        <center><u>楕円曲線における点Pと点Qの加算</u></center></p>
+                        <p><center><img src="image/kasan.gif"></center></p>
+                      </div>
+                      <br>
+
                       <p>ECMでは楕円曲線上にある<font color="red"><b>任意の1点</b></font>を取って上の操作を行います。ある点\(P\)を通る接線の\(P\)以外の交点は上記の表現の\((1)\)において「点\(P\)と点\(P\)以外の交点」と置き換えて考えて\(P×P\)と表し、その点を\(x\)軸対称にした点を\(P+P(=2P)\)とします。(\(2P\)ができるので<font color="red"><b>二倍算</b></font>といいます。)</p>
                       <p>一連の流れは以下のようになります。</p>
                       <div class="well">
@@ -179,9 +186,11 @@
                         </ol>
                       </div>
                       <p>更に工程5~7を繰り返すことによって\(4P\)、\(5P\)、\(6P\)…と点を繰り返し生成することができます。 </p>
-                      <p><font color="red"><b>これが繰り返しできない状態(無限遠点に到達する)になったとき素因数分解が完了します。</b></font>もし長い間繰り返しても見つからない場合は初めに置く点Pの位置を変えて再び処理を行います。</p>
-                      <p><center>楕円曲線法の流れ</center></p>
-                      <p class="gif"><img src="image/nibai.gif"></p><br>
+                      <p><font color="red"><b>これが繰り返しできない状態(無限遠点に到達する)になったとき素因数分解が完了します。</b></font>もし長い間繰り返しても見つからない場合は初めに置く点Pの位置を変えて再び処理を行います。</p><br>
+                      <div class="gif">
+                        <center><u>楕円曲線法の流れ</u></center></p>
+                        <p><center><img src="image/nibai.gif"></center></p>
+                      </div><br>
                       <p>ECMでは最低限この2点をプログラムにして処理を行います。これを更に効率化するには射影座標等のさらなる理論的な知識が必要です。</p>
                       <p>プロジェクトでは<a href="http://researchmap.jp/?active_action=multidatabase_view_main_detail&block_id=42427&content_id=11291&multidatabase_id=3946">楕円曲線暗号入門</a>を基礎的な楕円曲線の学習として活用していました。興味のある方は是非参照してみてください。</p>
                     </div>
