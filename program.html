@@ -10,60 +10,21 @@
 
     <title>FUN-ECM</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/original.css" rel="stylesheet">
-    <link href="css/shCoreDefault.css" rel="stylesheet">
-
-    <style type="text/css">
-body { padding-top: 80px; }
-@media ( min-width: 768px ) {
-  #banner {
-    min-height: 300px;
-    border-bottom: none;
-  }
-  .bs-docs-section {
-    margin-top: 8em;
-  }
-  .bs-component {
-    position: relative;
-  }
-  .bs-component .modal {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    bottom: auto;
-    z-index: 1;
-    display: block;
-  }
-  .bs-component .modal-dialog {
-    width: 90%;
-  }
-  .bs-component .popover {
-    position: relative;
-    display: inline-block;
-    width: 220px;
-    margin: 20px;
-  }
-  .nav-tabs {
-    margin-bottom: 15px;
-  }
-  .progress {
-    margin-bottom: 10px;
-  }
-  .padd{
-    padding-left: 16.8%;
-    padding-right: 16.8%;
-  }
-}
-    </style>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/original.css" rel="stylesheet">
+  <link href="css/shCoreDefault.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="css/jsxgraph.css" />
+  <script type="text/javascript" src="js/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="js/GeonextReader.js"></script>
+  <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
   </head>
 
   <body>
@@ -250,42 +211,36 @@ body { padding-top: 80px; }
               <h3 id="STAGE2"><b>Stage2</b></h3>
               <p>Stage2については<a href="http://www.hyperelliptic.org/tanja/SHARCS/talks06/Gaj.pdf">Implementing the Elliptic Curve Method of Factoring in Reconfigurable Hardware</a>をご覧ください</p>
             </div>
-          </div>
-          <nav>
-            <ul class="pager">
-              <li><a href="ecm1.html">☜前へ</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <!-- /#page-content-wrapper -->
-    </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery.jsの読み込み -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script>
-$(function(){
-  $('a[href^=#]').click(function() {
-    var href= $(this).attr("href");
-    var target = $(href == "#" ? 'html' : href);
-    var position = target.offset().top-87;
-    $('body,html').animate({scrollTop:position}, 300, 'swing');
-    return false;
-  });
-});
-    </script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/shCore.js"></script>
-    <script src="js/shBrushCpp.js"></script>
-    <script src="js/shBrushBash.js"></script>
-    <script type="text/javascript">
-SyntaxHighlighter.all();
-    </script>
-    <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
-    <!-- Menu Toggle Script -->
-  </body>
+            <!-- /#page-content-wrapper -->
 
-</html>
+          </div>
+          <!-- /#wrapper -->
+
+          <!-- jQuery -->
+          <script src="js/jquery.js"></script>
+          <!-- Bootstrap Core JavaScript -->
+          <script src="js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="js/jquery.min.js"></script>
+          <script>
+          $(function(){
+            $('a[href^=#]').click(function() {
+              var href= $(this).attr("href");
+              var target = $(href == "#" ? 'html' : href);
+              var position = target.offset().top-87;
+              $('body,html').animate({scrollTop:position}, 300, 'swing');
+              return false;
+            });
+          });
+          </script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/shCore.js"></script>
+          <script src="js/shBrushCpp.js"></script>
+          <script src="js/shBrushBash.js"></script>
+          <script type="text/javascript">
+          SyntaxHighlighter.all();
+          </script>
+          <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+
+        </body>
+
+        </html>
