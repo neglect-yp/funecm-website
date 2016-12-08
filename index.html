@@ -2,32 +2,19 @@
 <html lang="japanese">
 
 <head>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.bxslider.min.js"></script>
-  <link href="css/jquery.bxslider.css" rel="stylesheet" />
-  <script type="text/javascript">
-  jQuery(document).ready(function($){
-    $('.bxslider').bxSlider({
-      auto: true,
-    });
-  });
-  </script>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <title>FUN-ECM | 楕円曲線法を用いた素因数分解プログラムを作成するプロジェクト</title>
   <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/original.css" rel="stylesheet">
   <link href="css/sentence.css" rel="stylesheet">
-  
+  <link href="css/navbar.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -38,85 +25,90 @@
 <body>
   <div id="wrapper" class="padd">
     <!-- Sidebar -->
-    <header class="head-box">
-        <div class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-              <a href="index.html" class="navbar-brand"><img src="image/funecmlogo-min.png"></a>
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
-              <ul class="nav navbar-nav">
-                <li><a href="index.html">Top</a></li>
-                <li><a href="ecm.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+    <header>
+      <div class="navbar navbar-default navbar-fixed-top" id="add">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="index.html" class="navbar-brand"><img src="image/funecmlogo-min.png"></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Top</a></li>
+              <li><a href="ecm.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="ecm.html">ECMとは</a></li>
+                  <li><a href="ecm1.html">活動目的</a></li>
+                  <li><a href="program.html">プログラムについて</a></li>
+                </ul>
+                <li><a href="log.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">History <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="ecm.html">ECMとは</a></li>
-                    <li><a href="ecm1.html">活動目的</a></li>
-                    <li><a href="program.html">プログラムについて</a></li>
+                    <li><a href="log.html">前期活動</a></li>
+                    <li><a href="log2.html">後期活動</a></li>
                   </ul>
-                  <li><a href="log.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">History <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="log.html">前期活動</a></li>
-                      <li><a href="log2.html">後期活動</a></li>
-                    </ul>
                   <li><a href="member.html">Member</a></li>
                   <li><a href="link.html">Link</a></li>
                 </ul>
               </div>
-
             </div>
           </div>
         </header>
-          <!-- /#sidebar-wrapper -->
+        <!-- /#sidebar-wrapper -->
 
-          <script>
-          window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-          </script>
-          <script src="https://apis.google.com/js/platform.js" async defer>
-          {lang: "ja"}
-          </script>
-          <!-- [head]内や、[body]の終了直前などに配置 -->
-          <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async">
-          {lang: "ja"}
-          </script>
-          <!-- Page Content -->
-          <div id="page-content-wrapper">
-            <div class="soto container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="content">
-                    <div class="logo">
-                      <center><img src="image/funecmlogo2.png"></center>
-                      <center>楕円曲線法を用いた素因数分解プログラムを作成するプロジェクト</center>
+        <script>
+        window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+        </script>
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        {lang: "ja"}
+        </script>
+        <!-- [head]内や、[body]の終了直前などに配置 -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <div class="soto container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="content">
+                  <p id="page-top"><a href="#wrap">▲PAGE TOP</a></p>
+                  <div class="logo">
+                    <center><img src="image/funecmlogo2.png"></center>
+                    <center>楕円曲線法を用いた素因数分解プログラムを作成するプロジェクト</center>
+                  </div>
+                  <aside class="social">
+                    <div class="share-btn" style="padding-bottom:30px;">
+                      <ul>
+                        <li><a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true">Tweet</a></li>
+                        <li><iframe class="g-plus" data-action="share" data-annotation="bubble" data-href="https://neglect-yp.github.io/funecm-website/index.html"></iframe></li>
+                        <li><a href="https://neglect-yp.github.io/funecm-website/index.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
+                      </ul>
                     </div>
-                    <aside class="social">
-                      <div class="share-btn">
-                        <ul>
-                          <li><a class="twitter-share-button" href="https://twitter.com/share" data-dnt="true">Tweet</a></li>
-                          <li><iframe class="g-plus" data-action="share" data-annotation="bubble" data-href="https://neglect-yp.github.io/funecm-website/index.html"></iframe></li>
-                          <li><a href="https://neglect-yp.github.io/funecm-website/index.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
-                        </ul>
-                      </div>
-                    </aside>
-                    <ul class="bxslider">
-                      <li><img src="image/ECM1.jpg"></li>
-                      <li><img src="image/ECM2.jpg"></li>
-                      <li><img src="image/ECM3.jpg"></li>
-                    </ul>
-                    <class="clear container-fluid">
-                    <div class="long-Sentence">
-                      <h4>FUN-ECMとは、公立はこだて未来大学の講義の一つであるシステム情報科学実習のグループの一つです。</h4>
+                  </aside><br>
+                  <ul class="bxslider">
+                    <li><img src="image/ECM1.jpg"></li>
+                    <li><img src="image/ECM2.jpg"></li>
+                    <li><img src="image/ECM3.jpg"></li>
+                  </ul>
+                  <br>
+                  <div class="clear">
+                    <div class="long-Sentence" style="margin-top:40px;">
+                      <h1>What's FUN-ECM?</h1>
+                      <font color="#000077"><h3 class="sentence-h3">公立はこだて未来大学の講義の一つであるシステム情報科学実習におけるグループの一つです。</h3></font>
                       <ul>
                         <li><p>FUNとは未来大学、そしてECMとはElliptic Curve Method(楕円曲線法)の略称です。</p></li>
                         <li><p>FUN-ECMでは楕円曲線法を用いて効率的な素因数分解プログラムを作成するプロジェクトを行っています。</p></li>
                         <li><p>このサイトでは、FUN-ECMの活動内容やECMとはどのようなものかについて発信するために開設しました。</p></li>
                       </ul>
                     </div>
-                    <br><br>
+                    <br>
+                    <div class="long-Sentence">
+                      <h1>アンケート</h1>
+                      <p>来年度以降の活動のためにこのwebサイトについてのアンケートを実施しています。</p>
+                      <p>よろしければお読みにあった後で、以下のURLからアンケートに答えることができます。何卒よろしくお願いいたします。</p>
+                    </div>
+                    <br>
                     <div class="menu-bar tab-margin">
                       <a href="ecm.html">
                         <div class="tab color-1" style="color:#000;text-decoration:none">
@@ -148,15 +140,28 @@
               </div>
             </div>
           </div>
-          <!-- /#page-content-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
+        <!-- /#page-content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-      </body>
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/jquery.bxslider.min.js"></script>
+      <link href="css/jquery.bxslider.css" rel="stylesheet">
+      <script type="text/javascript">
+      jQuery(document).ready(function($){
+        $('.bxslider').bxSlider({
+          auto: true,
+        });
+      });
+      </script>
+      <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async">
+      {lang: "ja"}
+      </script>
+      <script src="js/pagetop.js"></script>
+    </body>
 
-      </html>
+    </html>

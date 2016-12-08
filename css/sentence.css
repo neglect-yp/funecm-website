@@ -1,15 +1,30 @@
-
+@media (min-width: 640px ) {
 .long-Sentence {
-    border: 2px solid #da4033;
-    border-radius: 4px;
+  clear: left;
     margin: auto;
-    padding: 2em;
+    padding: 3em;
     position: relative;
     width:100%;
+    background-color:#EEFFFF;
+  }
 }
+@media ( max-width: 640px ) {
+  .long-Sentence {
+     padding-top: 30px;
+      padding: 1em;
+      margin: auto;
+      position: relative;
+      width:100%;
+      border-top: 1px solid #EEEEEE;
+      border-bottom: 1px solid #EEEEEE;
+      background-color:#EEFFFF;
+    }
+  }
 
-.long-Sentence h4{
-  font-weight: 600;
+.long-Sentence h1{
+  font-weight: 900;
+  text-align: left;
+  color: #CCCCCC;
 }
 .long-Sentence ul{
   padding:0;
@@ -17,4 +32,17 @@
 
 .long-Sentence li{
   list-style-type: none;
+}
+
+.menu{
+  font-weight: 900;
+  color: #CCCCCC;
+  margin-left: 18px;
+}
+.que{
+  clear: left;
+  padding-top:20px;
+  padding-bottom:32px;
+  border-top: 2px solid #aaaaaa;
+  border-bottom: 2px solid #aaaaaa;
 }

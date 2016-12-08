@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="japanese">
-
+<html lang="ja">
 <head>
 
   <meta charset="utf-8">
@@ -9,11 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>FUN-ECM</title>
+  <title>ECMとは</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/original.css" rel="stylesheet">
+  <link href="css/shCoreDefault.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" type="text/css" href="css/jsxgraph.css" />
   <script type="text/javascript" src="js/jsxgraphcore.js"></script>
@@ -32,7 +32,7 @@
   <div id="wrapper" class="padd">
 
     <header>
-      <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar navbar-default navbar-fixed-top" id="add">
         <div class="container">
           <div class="navbar-header">
             <a href="index.html" class="navbar-brand"><img src="image/funecmlogo-min.png"></a>
@@ -77,6 +77,7 @@
                     <li class="#">About</li>
                     <li class="#">ECMとは</li>
                   </ol>
+                  <p id="page-top"><a href="#wrap">▲PAGE TOP</a></p>
                   <h1 class="bg-primary">ECMとは</h1>
                   <p class="margin-top">このページでは"ECM"とはどのようなものなのかについて基礎的な解説をしています。プログラムというよりかは理論寄りな部分になります。</p>
                   <h3><b>ECMとは何？</b></h3>
@@ -85,8 +86,8 @@
                     <p>
                       <center>楕円曲線 \(y=x^3+ax+b\) のグラフ</center>
                     </p>
-
-                    <div id='jxgbox' class='jxgbox' style='width:80%; height:400px;'></div>
+                    <div class="table-scroll">
+                    <div id='jxgbox' class='jxgbox'></div>
                     <script type='text/javascript'>
                     JXG.Options.axis.strokeColor = '#cccccc';
                     brd = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-15, 10, 15, -10], axis:true});
@@ -99,56 +100,79 @@
                     var c2 = brd.create('functiongraph', [function(x){ return -Math.sqrt(x*x*x+a.Value()*x+b.Value()); }],
                     {strokeWidth:3,strokeColor:'black'});
                     brd.unsuspendUpdate();
-                    </script><br><br>
-
+                    </script>
+                  </div>
+                    <br><br>
                     <p>私たちは、このECMを用いて素因数分解を行う活動しています。<br></p>
-                    <p>それではECMではどのようにして楕円曲線を用いて素因数分解を行うのでしょうか。ECMでは<font color="red"><b>【\(mod\) \(n\)での計算】</b></font>と<font color="red"><b>【点同士の二倍算】</b></font>についての2点が重要になります。</p>
+                    <p>それではECMではどのようにして楕円曲線を用いて素因数分解を行うのでしょうか。ECMでは<font color="red"><b>【\(mod\) \(n\)での計算】</b></font>と<font color="red"><b>【スカラー倍算】</b></font>についての2点が重要になります。</p>
                     <h3><b>\(mod\) \(n\) の計算について</b></h3>
                     <div class="marg">
                       <p>まず\(mod\) \(n\)とは簡単に「\(n\)で割った余り」とイメージしてください。</p>
                       <div class="well">
                         \(a\)と\(b\)の\(n\)で割ったときの余りが等しいとき、\(a≡b\) \((mod\) \(n)\)と表す。
                       </div>
-                      <p>例えば \(12+7≡4\) \((mod\) \(15)\)は「\(12+7(=19)\)を\(15\)で割った余りは\(4\)となる」と考えます。<font color="red"><b>ECMでは素因数分解をする自然数を\(n\)と設定し、計算をすべて\(mod\) \(n\)上で行います。</b></font></p>
+                      <p>例えば \(12+7≡4\) \((mod\) \(15)\)は「\(12+7(=19)\)を\(15\)で割った余りは\(4\)となる」と考えます。<font color="red"><b>ECMでは素因数分解をする自然数を\(n\)と設定し、計算をすべて \(mod\) \(n\) 上で行います。</b></font></p>
                       <p>座標についても同様です。例えば\((19,31)\)はそれぞれの座標を\(15\)で割るとそれぞれ\(4\)と\(1\)となるので \(mod\) \(15\)上の世界では\((19,31)≡(4,1)\)となるので\((19,31)\)は\((4,1)\)として扱います。</p>
                       <p>ECMでは\(mod\)を取るようにしてプログラムを組むことが必須なのです。</p>
                     </div>
-                    <h3><b>二倍算について</b></h3>
+                    <h3><b>スカラー倍算について</b></h3>
                     <div class="marg">
-                      <p>続いて<font color="red"><b>点同士の二倍算</b></font>についてです。これはECMの基本的な処理の流れに大きく関係しています。</p>
-                      <p>点同士の二倍算ではまず以下の表現が重要になります。</p>
+                      <p>続いて<font color="red"><b>スカラー倍算</b></font>についてです。これはECMの基本的な処理の流れに大きく関係しています。</p>
+                      <p>スカラー倍算ではまず以下の表現が重要になります。</p>
                       <div class="well">
                         <ul style="list-style:none; padding-left:0px;" >
-                          <li>\((1)\) 楕円曲線上のある点\(P\),点\(Q\)の通る直線の\(P\),\(Q\)以外の交点を\(P×Q\)と表す。</li>
-                          <li>\((2)\) 点\(P×Q\)の\(x\)軸対称な点を\(P+Q\)と表す。(これを点\(P\)と点\(Q\)の加算といいます)</li>
+                          <li>\((1)\) 楕円曲線上のある点\(P\),点\(Q\)の通る直線の\(P\),\(Q\)以外の交点を\(P*Q\)と表す。</li>
+                          <li>\((2)\) 点\(P*Q\)の\(x\)軸対称な点を\(P+Q\)と表す。(これを点\(P\)と点\(Q\)の加算といいます)</li>
                         </ul>
                       </div>
-                      <div class="gif">
-                        <center><u><b>楕円曲線における点Pと点Qの加算</b></u></center></p>
-                        <p><center><img src="image/kasan.gif"></center></p>
+                      <div class="panel panel-primary">
+                      <div class="panel-heading"><center>楕円曲線上の点Pと点Qの加算</center></div>
+                      <div class="panel-body gif table-scroll2">
+                        <p><center><img src="image/add.gif"></center></p>
                       </div>
-                      <br>
-
-                      <p>ECMでは楕円曲線上にある<font color="red"><b>任意の1点</b></font>を取って上の操作を行います。ある点\(P\)を通る接線の\(P\)以外の交点は上記の表現の\((1)\)において「点\(P\)と点\(P\)以外の交点」と置き換えて考えて\(P×P\)と表し、その点を\(x\)軸対称にした点を\(P+P(=2P)\)とします。(\(2P\)ができるので<font color="red"><b>二倍算</b></font>といいます。)</p>
-                      <p>一連の流れは以下のようになります。</p>
+                    </div>
+                      <p>ECMではまず初めに楕円曲線上にある<font color="red"><b>任意の1点</b></font>を取って上の操作を行います。ある点\(P\)を通る接線の\(P\)以外の交点は上記の表現の\((1)\)において「点\(P\)と点\(P\)以外の交点」と置き換えて考えて\(P*P\)と表し、その点を\(x\)軸対称にした点を\(P+P(=2P)\)とします。(\(2P\)ができるので<font color="red"><b>二倍算</b></font>といいます。)</p>
+                      <p>この後\(P\)と\(2P\)を加算した\(3P\)を求め、その後\(P\)と\(3P\)を加算した\(4P\)を求め…といった加算を繰り返すことができます。</p>
+                      <div class="well">
+                        ECMでは楕円曲線上のある点\(P\)を二倍算・加算によってある定数倍まで処理をする。<br>
+                        \(P+P+P+P+P+P+P+P…+P=kP\) (\(k\) :自然数)
+                      </div>
+                      <p>このように、点\(P\)と自然数\(k\)から\(kP\)を求めることをスカラー倍算といいます。</p>
+                      </p><font color="red"><b>ECMではスカラー倍算が最も重要な演算処理です。</b></font> ( 理由は後述します。 )</p>
+                      <p>まとめですが、ECMのスカラー倍の流れは以下のようになります。</p>
                       <div class="well">
                         <ol>
                           <li>初めに楕円曲線上に適当な点\(P\)を置く。</li>
                           <li>点\(P\)の接線を引く。</li>
-                          <li>接線を引くと新たに楕円曲線との交点\(P×P\)ができる。</li>
-                          <li>点\(P×P\) の\(x\)軸に対称な点となる\(2P\)をとる。(\(2P=P+P\))</li>
+                          <li>接線を引くと新たに楕円曲線との交点\(P*P\)ができる。</li>
+                          <li>点\(P*P\) の\(x\)軸に対称な点となる\(2P\)をとる。(\(2P=P+P\))</li>
                           <li>生成された点\(2P\)と初めに置いた点\(P\)を直線で結ぶ。</li>
-                          <li>直線を引くと新たに楕円曲線との交点\(2P×P\)ができる。</li>
-                          <li>点\(2P×P\)の\(x\)軸に対称な点となる\(2P+P(=3P)\)とする。</li>
+                          <li>直線を引くと新たに楕円曲線との交点\(2P*P\)ができる。</li>
+                          <li>点\(2P*P\)の\(x\)軸に対称な点となる\(2P+P(=3P)\)とする。</li><br>
+                        </ol>
+                        <p style="padding-left:20px;">更に工程5~7を繰り返すことによって\(4P\)、\(5P\)、\(6P\)…と点を繰り返し生成する。</p>
+                      </div>
+                      <br>
+                      <div class="panel panel-primary">
+                      <div class="panel-heading"><center>スカラー倍の流れ</center></div>
+                      <div class="panel-body gif">
+                        <p><center><img src="image/doubling.gif"></center></p>
+                      </div>
+                    </div>
+                      <h3><b>ECMの流れ</b></h3>
+                      <p>実際に素因数分解をする際の流れは以下のようになります。</p>
+                      <div class="well" style="padding-bottom:10px;">
+                        <ol>
+                          <li> 素因数分解したい整数を \(N\) とする。( 2.以降 \(mod\) \(N\)で演算処理をする )</li>
+                          <li> \(𝐸: 𝑦^2=𝑥^3+𝐴𝑥+𝐵\)（楕円曲線）と，それに乗る点\(P\)\((∈E)\)を決める。</li>
+                          <li> 適切な大きさの整数 \(𝐵1\) を与え，そこから \(𝑘\) を求める。</li>
+                          <li> \(mod\) \(N\) で，スカラー倍 \(𝑘𝑃\) を計算する。</li>
+                          <li> \(𝑘𝑃\) の座標と \(N\) の最大公約数を求める。最大公約数が \(1\) でなければ，\(N\) の因数の1つである。（運の要素が絡んでくる）</li>
+                          <li> 因数が見つからなければ， 2. に戻り，別の曲線と点で再度計算を行う。</li>
                         </ol>
                       </div>
-                      <p>更に工程5~7を繰り返すことによって\(4P\)、\(5P\)、\(6P\)…と点を繰り返し生成することができます。 </p>
-                      <p><font color="red"><b>これが繰り返しできない状態(無限遠点に到達する)になったとき素因数分解が完了します。</b></font>もし長い間繰り返しても見つからない場合は初めに置く点Pの位置を変えて再び処理を行います。</p><br>
-                      <div class="gif">
-                        <center><u><b>楕円曲線法の流れ</b></u></center></p>
-                        <p><center><img src="image/nibai.gif"></center></p>
-                      </div><br>
-                      <p>ECMでは最低限この2点をプログラムにして処理を行います。これを更に効率化するには射影座標等のさらなる理論的な知識が必要です。</p>
+                      <p><font color="red"><b>スカラー倍算を行い、見つからなければ条件を変えておおよそ数千回程度繰り返すので、ECMではスカラー倍算を効率化することが重要になります。</b></font>2016年度では移動窓法と呼ばれる手法を用いることによって加算や二倍算の回数を減らしてスカラー倍算を行っています。</p>
+                      <p>また、さらに効率化するためには射影座標等の理論的な知識が必要になります。</p>
                       <p>プロジェクトでは<a href="http://researchmap.jp/?active_action=multidatabase_view_main_detail&block_id=42427&content_id=11291&multidatabase_id=3946">楕円曲線暗号入門</a>を基礎的な楕円曲線の学習として活用していました。興味のある方は是非参照してみてください。</p>
                     </div>
                   </div>
@@ -167,12 +191,12 @@
 
           <!-- jQuery -->
           <script src="js/jquery.js"></script>
-
           <!-- Bootstrap Core JavaScript -->
           <script src="js/bootstrap.min.js"></script>
-
+          <script type="text/javascript" src="js/jquery.min.js"></script>
           <!-- Menu Toggle Script -->
-
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/pagetop.js"></script>
         </body>
 
         </html>
