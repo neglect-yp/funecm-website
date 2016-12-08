@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>FUN-ECM</title>
+  <title>後期活動</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 
     <!-- Sidebar -->
     <header>
-      <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar navbar-default navbar-fixed-top" id="add">
         <div class="container">
           <div class="navbar-header">
             <a href="index.html" class="navbar-brand"><img src="image/funecmlogo-min.png"></a>
@@ -75,21 +75,120 @@
                     <li class="#">History</li>
                     <li class="#">後期活動</li>
                   </ol>
+                  <p id="page-top"><a href="#wrap">▲PAGE TOP</a></p>
                   <h1 class="bg-primary">後期活動</h1>
                   <h3><b>9月,10月</b></h3>
-                  <p class="marg"> 後期の活動が始動した。理論班は、広報班としてWebページを作成する班と、引き続き理論班として改良されたプログラムが実際にどれくらい早くなったのかを検証する班に分割した。
-                    理論班は、様々な桁数で前年度よりどのくらい早くなったのかを時間を計り、記録した。
-                    プログラム班は、前期で理論班が発見したAtkin-Moraine ECPPアルゴリズム等をプログラムに取り入れ、更に細かい修正を行ったのち、今年度のプログラムの改良を終了した。広報班はWebページを一から作るということで、
-                    デザインについてや、html、css、githubなどについて学習しつつWebページを作成した。</p>
+                  <p class="marg"> 後期の活動が始動した。理論班は、広報班としてFUN-ECMの活動発信のためのWebページを作成する班と、引き続き理論班として改良されたプログラムが実際にどれくらい早くなったのかを検証する班に分割した。
+                  </p>
+                  <div class="RSA">
+                    <img src="image/route.PNG">
+                  </div>
+                  <p>
+                    理論班は、昨年度のプログラムとの比較方法を考えた。いくつかの検証方法を調査し、問題が発生しない適した方法を探した。
+                    プログラム班は、前期で理論班が発見したAtkin-Moraine ECPPアルゴリズム等をプログラムに取り入れるなど高速化のための実装を引き続き行った。広報班ではWebページを1から作るということで、
+                    初めにページコンテンツの草案を考えた後、html,css,githubなどについて学習をしながらWebページを作成した。</p>
                     <h3><b>11月</b></h3>
-                    <p class="marg">プログラム班も広報班に加入し、Webページの作成の続きを行った。広報班・理論班共に活動を継続しつつ最終発表に向けての準備を始動した。</p>
+                    <p class="marg">プログラム班は今年度の改良を完了し、作成したECMプログラムを検証班に回して、昨年度のプログラムの比較を行った。広報班ではWebページを完成させた。</p>
+                    <p>また、それぞれの班の活動と並行に最終発表に向けての準備を始動した。ポスターの作成やプレゼンに向けた練習を行った。</p>
                     <h3><b>12月</b></h3>
-                    <p class="marg">最終発表を行った。</p>
+                    <p class="marg">12/8に大学にて最終成果の発表を行った。最終発表後は最終報告書への準備を行った。</p>
+                    <h3><b>2016年度の成果</b></h3>
+                    <h4 style="padding-top:10px;"><mark>プログラム班</mark></h4>
+                    <p>昨年度のプログラムから以下の要素の改良に成功した。</p>
+                    <ul>
+                      <li>射影座標を用いた変換コストの削減</li>
+                      <li>Extended twisted Edwards coordinatesの実装</li>
+                      <li>楕円曲線の生成法の変更(乱数の採用)</li>
+                      <li>スカラー倍算の高速化のための移動窓法</li>
+                      <li>理論班が発見したAtkin-Morain ECPPの実装</li>
+                      <li>Stage2の実装</li>
+                    </ul>
+                    <h4 style="padding-top:20px;"><mark>理論班</mark></h4>
+                    <p>論文を読み、Atkin-Morain ECPPがExtended twisted Edwards coordinatesにおいて1.5倍高速化できることが見込めることを発見した。</p>
+                    <p>後期では昨年度のプログラムとの検証を行った。手法と結果は以下のようになる。</p><br>
+                    <div class="theory">
+                      <p><b>検証マシン</b></p>
+                      <ul class="dashed">
+                        <li>コンパイラ: icc 14.0.1</li>
+                        <li>OpenMP: 3.1</li>
+                        <li>CPU: Intel Xeon Phi 5110P(60コア)</li>
+                        <li>RAM: 64GB（DDR3L-1600 8GB DIMM×8)</li>
+                      </ul>
+                      <p><b>検証方法</b></p>
+                      <ul class="dashed">
+                        <li>合成数を入力し，実際に素因数分解されるまでの時間を比較する。</li>
+                        <li>20〜50桁を5桁刻みで各5回ずつ検証する。</li>
+                      </ul>
+                      <p><b>検証結果</b></p>
+                      <ul class="dashed">
+                        <li>20桁から30桁では昨年度より素因数分解の速度が遅かったが、35桁以降では最大15パーセントの改善がされた。</li>
+                      </ul>
+                      <div class="table-scroll">
+                        <table class="tablestyle">
+                          <tr>
+                            <th>桁数</th>
+                            <th>今年度(min~MAX)[秒]</th>
+                            <th>昨年度(min~MAX)[秒]</th>
+                            <th>改善率</th>
+                          </tr>
+                          <tr>
+                            <td>20</td>
+                            <td>3.4~3.696</td>
+                            <td> 1.689~2.257</td>
+                            <td>約-82%</td>
+                          </tr>
+                          <tr>
+                            <td>25</td>
+                            <td>10.906~11.323</td>
+                            <td>8.528~9.513</td>
+                            <td>約-25%</td>
+                          </tr>
+                          <tr>
+                            <td>30</td>
+                            <td>47.165~51.537</td>
+                            <td>44.223~47.599</td>
+                            <td>約-4%</td>
+                          </tr>
+                          <tr>
+                            <td>35</td>
+                            <td>177.932~190.253</td>
+                            <td>191.348~200.441</td>
+                            <td>約+6%</td>
+                          </tr>
+                          <tr>
+                            <td>40</td>
+                            <td>686.793~693.397</td>
+                            <td>711.594~713.633</td>
+                            <td>約+4%</td>
+                          </tr>
+                          <tr>
+                            <td>45</td>
+                            <td>2682.47~2745.112</td>
+                            <td> 2653.112~2667.896</td>
+                            <td>約+0%</td>
+                          </tr>
+                          <tr>
+                            <td>50</td>
+                            <td>10173.577~10622.231</td>
+                            <td>11763.204~11849.030</td>
+                            <td>約+12%</td>
+                          </tr>
+                        </table>
+                      </div>
+                      <p><center>※改善率:100-(今年度の平均秒数÷昨年度の平均秒数×100)[％]</center></p>
+                    </div>
+                    <p style="padding-top:20px;">以上より、大きい桁数のとき改善率が正の値であることから、昨年度のプログラムと比べてより大きい桁数で効率のよい処理を行うプログラムになったことがわかった。</p>
+                    <h4 style="padding-top:20px;"><mark>広報班</mark></h4>
+                    <p>我々の活動を伝えることで楕円曲線についてより多くの人に知ってもらうことを目標として活動した。</p>
+                    <p>後期の半期間を用いて本サイトを作成した。</p>
+                    <h4 style="padding-top:20px;"><mark>最終結果</mark></h4>
+                    <p>理論班の検証結果から、FUN-ECMの目標としていた昨年度のプログラムに比べ高速化することに成功したが、ECMNETのランクインすることはできなかった。</p>
+                    <p>FUN-ECMは今年で3年目であるが、今年度は新しい活動として我々の活動を外部に発信する活動を行うことができた。</p>
                   </div>
                 </div>
                 <nav>
                   <ul class="pager">
-                    <li><a href="log.html">☜次へ</a></li>
+                    <li><a href="log.html">☜前へ</a></li>
                   </ul>
                 </nav>
               </div>
@@ -105,7 +204,7 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-
+        <script src="js/pagetop.js"></script>
         <!-- Menu Toggle Script -->
 
       </body>
