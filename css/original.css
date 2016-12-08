@@ -384,3 +384,13 @@ table.tablestyle td {
     text-decoration: none;
     background: #0066FF;
 }
+@media(max-width:950px){
+  .none{
+    display: none;
+  }
+}
+@media(min-width:951px){
+  .small{
+    display: none;
+  }
+}

@@ -30,9 +30,6 @@
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-	-moz-box-shadow: 0 0 5px #ccc;
-	-webkit-box-shadow: 0 0 5px #ccc;
-	box-shadow: 0 0 1px #ccc;
 	border:  1px solid #fff;
 	left: -5px;
 	background: #fff;
@@ -102,7 +99,7 @@
 }
 
 /* DIRECTION CONTROLS (NEXT / PREV) */
-
+@media(min-width:640px){
 .bx-wrapper .bx-prev {
 	left: 10px;
 	background: url(../image/controls.png) no-repeat 0 -32px;
@@ -112,7 +109,7 @@
 	right: 10px;
 	background: url(../image/controls.png) no-repeat -43px -32px;
 }
-
+}
 .bx-wrapper .bx-prev:hover {
 	background-position: 0 0;
 }
